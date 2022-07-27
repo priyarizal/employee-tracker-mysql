@@ -22,3 +22,5 @@ const db = mysql.createConnection(
     },
     console.log(`Connected to the department_db database`)
   );
+
+  

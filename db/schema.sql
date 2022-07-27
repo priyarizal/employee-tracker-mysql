@@ -19,14 +19,16 @@ CREATE TABLE roles (
     FOREIGN KEY (department_id) REFERENCES department(id)
     ON DELETE SET NULL
 );
+
 -- Table for employee
 DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
     id INT NOT NULL PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    roles_id INT NOT NULL,
-    manager_id INT NOT NULL,
+    roles_id INT,
+    manager_id INT,
     FOREIGN KEY (roles_id) REFERENCES roles(id)
     ON DELETE SET NULL
 );
+
