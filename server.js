@@ -30,11 +30,10 @@ dbConnect.connect(function(err){
    console.log("MySQL connected");
 })
 
-
+//Setting up prompts for the user
 function startInquirer () {
     inquirer
         .prompt ([
-
           {
             type: 'list',
             name: 'startInquirer',
@@ -43,6 +42,7 @@ function startInquirer () {
             'Add a department' , 'Add a role', 'Add an Employee', 'Update an Employee Role', 'AllDone' ]
           }, 
         ])
+        //switch case depending on the user's response
             .then ((usersChoice) => {
                switch(usersChoice.startInquirer) {
                 case "View all Departments":
@@ -76,15 +76,13 @@ function startInquirer () {
                }
 
             })
-}
+};
 
 
+function viewDepartments ()
 //"presented with a formatted table showing department names and department IDs"
 
 //query of department names and department IDs
-
-function viewDepartments ()
-
 
 
 
