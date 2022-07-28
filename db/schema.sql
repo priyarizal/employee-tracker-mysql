@@ -1,34 +1,40 @@
-DROP DATABASE IF EXISTS department_db;
-CREATE DATABASE department_db;
+DROP DATABASE IF EXISTS employee_db;
+CREATE DATABASE employee_db;
 
-USE deprtment_db;
+USE employee_db;
 
 -- Table for department
-DROP TABLE IF EXISTS department_db;
+-- DROP TABLE IF EXISTS department;
 CREATE TABLE department (
-    id INT NOT NULL PRIMARY KEY,
-    department_name VARCHAR(30) NOT NULL
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL
 );
 
 -- Table for roles
-DROP TABLE IF EXISTS roles;
+-- DROP TABLE IF EXISTS roles;
 CREATE TABLE roles (
-    id INT NOT NULL PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(30),
     salary DECIMAL,
+    department_id INT,
     FOREIGN KEY (department_id) REFERENCES department(id)
-    ON DELETE SET NULL
+    ON DELETE CASCADE 
 );
 
 -- Table for employee
-DROP TABLE IF EXISTS employee;
+-- DROP TABLE IF EXISTS employee;
 CREATE TABLE employee (
-    id INT NOT NULL PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    roles_id INT,
-    manager_id INT,
-    FOREIGN KEY (roles_id) REFERENCES roles(id)
-    ON DELETE SET NULL
+    role_id INT,
+    manager_id INT ,
+    FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE,
+    FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL
+    
 );
+
+SHOW COLUMNS FROM department;
+SHOW COLUMNS FROM roles;
+SHOW COLUMNS FROM employee;
 
