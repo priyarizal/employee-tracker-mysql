@@ -1,4 +1,4 @@
-INSERT INTO department(name)
+INSERT INTO department(department_name)
 VALUES  ("Operations"),
         ("IT"),
         ("Production"),
@@ -7,11 +7,11 @@ VALUES  ("Operations"),
 
 INSERT INTO roles (title, salary, department_id)
 VALUES  ("CEO",1000000, 1),
-        ("Operations manager", 80,000, 1),
-        ("Software Engineer", 185,000, 2),
-        ("Product Manager", 120,000, 3),
-        ("Attorney", 250,000, 4),
-        ("CFO", 300,000, 5);
+        ("Operations manager", 80000, 1),
+        ("Software Engineer", 185000, 2),
+        ("Product Manager", 120000, 3),
+        ("Attorney", 250000, 4),
+        ("CFO", 300000, 5);
 
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)

@@ -5,7 +5,7 @@ const inquirer = require("inquirer");
 
 // const PORT = process.env.PORT || 3000
 
- let cTable = require('console.table');
+let cTable = require('console.table');
 
 
 // Middleware for JSON parsing
@@ -28,42 +28,42 @@ const dbConnect = mysql2.createConnection(
 dbConnect.connect(function (err) {
   if (err) throw err;
   console.log("MySQL connected");
-  main ();
+  main();
 })
-async function main () {
+async function main() {
   let quitProgram = false;
-  let prompt = await startInquirer(); 
-    switch (prompt.startInquirer) {
-      case "View all Departments":
-        await viewDepartments();
-        break;
-      case "View all Roles":
-        viewRoles()
-        break;
-      case "View all Employees":
-        viewEmployees()
-        break;
-      case "Add a department":
-        addDepartment()
-        break;
-      case "Add a role":
-        addRoles()
-        break;
-      case "Add an Employee":
-        addEmployee()
-        break;
-      case "Update an Employee Role":
-        updateEmployeeRole()
-        break;
-      case "All done":
-        console.log('-------------------');
-        console.log('All Done');
-        console.log('--------------------');
-        allDone()
-        break;
-      default:
-        console.log("default")
-    }
+  let prompt = await startInquirer();
+  switch (prompt.startInquirer) {
+    case "View all Departments":
+      await viewDepartments();
+      break;
+    case "View all Roles":
+      viewRoles()
+      break;
+    case "View all Employees":
+      viewEmployees()
+      break;
+    case "Add a department":
+      addDepartment()
+      break;
+    case "Add a role":
+      addRoles()
+      break;
+    case "Add an Employee":
+      addEmployee()
+      break;
+    case "Update an Employee Role":
+      updateEmployeeRole()
+      break;
+    case "All done":
+      console.log('-------------------');
+      console.log('All Done');
+      console.log('--------------------');
+      allDone()
+      break;
+    default:
+      console.log("default")
+  }
 }
 //Setting up prompts for the user
 
@@ -77,49 +77,51 @@ async function startInquirer() {
         choices: ['View all Departments', 'View all Roles', 'View all Employees',
           'Add a department', 'Add a role', 'Add an Employee', 'Update an Employee Role', 'AllDone']
       },
-    ]) 
-  }
+    ])
+}
 
-    // //switch case depending on the user's response
-    // .then((usersChoice) => {
-      // switch (usersChoice.startInquirer) {
-      //   case "View all Departments":
-      //     await viewDepartments();
-      //     break;
-      //   case "View all Roles":
-      //     viewRoles()
-      //     break;
-      //   case "View all Employees":
-      //     viewEmployees()
-      //     break;
-      //   case "Add a department":
-      //     addDepartment()
-      //     break;
-      //   case "Add a role":
-      //     addRoles()
-      //     break;
-      //   case "Add an Employee":
-      //     addEmployee()
-      //     break;
-      //   case "Update an Employee Role":
-      //     updateEmployeeRole()
-      //     break;
-      //   case "All done":
-      //     console.log('-------------------');
-      //     console.log('All Done');
-      //     console.log('--------------------');
-      //     allDone()
-      //     break;
-      //   default:
-      //     console.log("default")
-      // }
+// //switch case depending on the user's response
+// .then((usersChoice) => {
+// switch (usersChoice.startInquirer) {
+//   case "View all Departments":
+//     await viewDepartments();
+//     break;
+//   case "View all Roles":
+//     viewRoles()
+//     break;
+//   case "View all Employees":
+//     viewEmployees()
+//     break;
+//   case "Add a department":
+//     addDepartment()
+//     break;
+//   case "Add a role":
+//     addRoles()
+//     break;
+//   case "Add an Employee":
+//     addEmployee()
+//     break;
+//   case "Update an Employee Role":
+//     updateEmployeeRole()
+//     break;
+//   case "All done":
+//     console.log('-------------------');
+//     console.log('All Done');
+//     console.log('--------------------');
+//     allDone()
+//     break;
+//   default:
+//     console.log("default")
+// }
 
 
 async function viewDepartments() {
-  let query = "SELECT department.id, department.name FROM department";
+  let query = "SELECT department.id, department.department_name FROM department";
   let rows = await dbConnect.promise().query(query);
-  console.table(rows);
-  console.log(rows);
+  debugger
+  query.length
+  console.table(rows[0]);
+  // console.log(rows);
 }
 //"presented with a formatted table showing department names and department IDs"
 
