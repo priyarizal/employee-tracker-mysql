@@ -5,3 +5,20 @@ VALUES  (""),
         (""),
         (""),
         (""),
+
+INSERT INTO roles (roles_id)
+VALUES  ("")
+        ("")
+        ("")
+        ("")
+        ("")
+
+
+INSERT INTO employee (employee)
+VALUES    ("")
+          ("")
+          ("")
+          ("")
+          ("")
+          ("")
+          ("")

@@ -13,14 +13,76 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // Connect to database
-const db = mysql.createConnection(
+const dbConnect = mysql.createConnection(
     {
       host: "localhost",
       user: "root",
       password: "password",
       database: "department_db",
+      port: 3006,
     },
     console.log(`Connected to the department_db database`)
   );
 
-  
+//connecting to MySQL and database
+dbConnect.connect(function(err){
+  if(err) throw err;
+   console.log("MySQL connected");
+})
+
+
+function startInquirer () {
+    inquirer
+        .prompt ([
+
+          {
+            type: 'list',
+            name: 'startInquirer',
+            message: 'What would you like to do?',
+            choices: ['View all Departments', 'View all Roles' , 'View all Employees', 
+            'Add a department' , 'Add a role', 'Add an Employee', 'Update an Employee Role' ]
+          }, 
+        ])
+            .then ((usersChoice) => {
+               switch(usersChoice.startInquirer) {
+                case "Add a department"
+               }
+
+            })
+}
+
+
+//"presented with a formatted table showing department names and department IDs"
+
+//query of department names and department IDs
+
+function viewDepartments ()
+
+
+
+
+function viewRoles ()
+//"Presented with the Job title, role Id, the department that role belongs to, and the salary for that role"
+
+
+
+function viewEmployees()
+//"Presented with a formatted table showing employee data, including employee ids, 
+//first names, last names, job titles, departments, salaries and managers that the employees reports to"
+
+
+
+function addDepartment ()
+//enter the name of the department which is then added to the database
+
+
+function addRoles ()
+//prompted to enter the name, salary, and department for the role and that's also added to the database
+
+
+function addEmployee()
+// enter employee's first name, last name, role, manager, and that employee is added to the database
+
+
+function updateEmployeeRole()
+// select an employee to update and their new role and added this to the database
