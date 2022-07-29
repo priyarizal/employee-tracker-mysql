@@ -15,11 +15,11 @@ VALUES  ("CEO",1000000, 1),
 
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES    ("C","EO", 1, NULL),
-          ("O", "M", 2, 1),
-          ("S", "E", 3, 1),
-          ("P", "M", 4, 1),
-          ("A","G", 5, 1),
-          ("C", "FO", 6, 1);
+VALUES    ("Cardmom","Seeds", 1, NULL),
+          ("Oregano", "Mike", 2, 1),
+          ("Sage", "Ernest", 3, 1),
+          ("Pepper", "Milk", 4, 1),
+          ("Asa","Girl", 5, 1),
+          ("Cumin", "Fog", 6, 1);
           
 

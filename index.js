@@ -30,7 +30,7 @@ async function main() {
       await viewDepartments();
       break;
     case "View all Roles":
-      viewRoles()
+      await viewRoles()
       break;
     case "View all Employees":
       viewEmployees()
@@ -89,16 +89,12 @@ async function viewRoles() {
   console.table(rows[0]);
 }
 
-
-
-
-
-function viewEmployees() {
-
+//formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries and managers that the employees reports to"
+async function viewEmployees() {
+  let query =  "SELECT employee.id, employee.first_name, employee.last_name, roles.title, department.department_name AS department, roles.salary, employee.manager_id AS manager FROM employee JOIN roles on employee.role_id = roles.id JOIN department on roles.department_id = department.id";
+  let rows = await dbConnect.promise().query(query);
+  console.table(rows[0]);
 }
-//"Presented with a formatted table showing employee data, including employee ids, 
-//first names, last names, job titles, departments, salaries and managers that the employees reports to"
-
 
 
 function addDepartment() {
