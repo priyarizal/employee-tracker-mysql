@@ -131,18 +131,20 @@ function addRoles() {
         message: "What roles would you like to add?"
       },
       {
-        type: "int",
+        type: "input",
         name: "salary",
         message: "What salary would you like to give this role?",
       },
+      {
+        type: "list",
+        name: "department",
+        message: "What department does this role belong to?",
+        choices:["1", "2", "3", "4", "5"],
+      }
     ]).then(function(answer) {
       dbConnect.query(
-        "INSERT INTO roles(title, salary, department_id) VALUES (?, ?, ?)",
-        {
-          title: answer.addRoles,
-          salary: answer.salary,
-          department: answer.department_id
-        },
+        `INSERT INTO roles(title, salary, department_id) VALUES (?, ?, ?)`,
+        [answer.addRoles, answer.salary, answer.department],
         function (err) {
           if (err) throw (err);
           console.log("-------------------------------------------");
@@ -155,6 +157,21 @@ function addRoles() {
 }
 
 function addEmployee() {
+  inquirer
+    .prompt ([
+      { name: "first_name", message: "What's the employee's first name?" },
+      { name: "last_name", message: "What's the employee's last name?" },
+      {
+        name: "role",
+        message: "What is the employee's role?",
+        type: "list",
+      },
+      {
+        name: "manager_id",
+        message: "Who is the employee's manager?",
+        type: "list",
+      },
+    ])
 
 }
 // enter employee's first name, last name, role, manager, and that employee is added to the database

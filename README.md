@@ -3,19 +3,25 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
-This application can be used to write and save notes. It uses express.js back end and saves and retrives note data from a JSON file. This application was also the first time I used Heroku to deploy the link. 
+This application is a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL. 
+
+The command line accepts user input and is presented with following options when user's start the application: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role. All the view options provide the users with respective data. The add options allow users to add either a department or a role and salary associated with that role.
+It also allows users to update an employee role (work in progress at the moment)
 
 
 ## Deployed link and URL 
-- Heroku deployed link : https://lit-cove-62482.herokuapp.com/
-- GitHub URL : https://github.com/priyarizal/expressjs-notetaker
+- GitHub URL : https://github.com/priyarizal/employee-tracker-mysql
 
 
 ## Code Snippets
- - Express.js
+ - MySQL
 
  ```
- 
+ async function viewEmployees() {
+  let query = "SELECT employee.id, employee.first_name, employee.last_name, roles.title, department.department_name AS department, roles.salary, employee.manager_id AS manager FROM employee JOIN roles on employee.role_id = roles.id JOIN department on roles.department_id = department.id";
+  let rows = await dbConnect.promise().query(query);
+  console.table(rows[0]);
+}
 
  ```
 
@@ -27,21 +33,16 @@ This application can be used to write and save notes. It uses express.js back en
 - JavaScript
 - Node.js
 - NPM
-- Express.js
 - Mysql2
-- Heroku
 - Inquirer Package
 - Console.table 
 
 
 ## Gif walkthrough
-![gif of demo](./public/assets/images/notes.gif)
+![gif of demo]()
 
 ## License
 MIT
-
-## Contributors
-- Alejandra Izquierdo
 
 
 ## Questions
