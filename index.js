@@ -1,16 +1,8 @@
 const mysql2 = require("mysql2");
 const inquirer = require("inquirer");
-// const express = require ("express");
-// const app = express();
 
-// const PORT = process.env.PORT || 3000
+let consoleTable = require('console.table');
 
-let cTable = require('console.table');
-
-
-// Middleware for JSON parsing
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
 
 // Connect to database
 const dbConnect = mysql2.createConnection(
@@ -80,59 +72,24 @@ async function startInquirer() {
     ])
 }
 
-// //switch case depending on the user's response
-// .then((usersChoice) => {
-// switch (usersChoice.startInquirer) {
-//   case "View all Departments":
-//     await viewDepartments();
-//     break;
-//   case "View all Roles":
-//     viewRoles()
-//     break;
-//   case "View all Employees":
-//     viewEmployees()
-//     break;
-//   case "Add a department":
-//     addDepartment()
-//     break;
-//   case "Add a role":
-//     addRoles()
-//     break;
-//   case "Add an Employee":
-//     addEmployee()
-//     break;
-//   case "Update an Employee Role":
-//     updateEmployeeRole()
-//     break;
-//   case "All done":
-//     console.log('-------------------');
-//     console.log('All Done');
-//     console.log('--------------------');
-//     allDone()
-//     break;
-//   default:
-//     console.log("default")
-// }
-
-
+//query of department names and department IDs
 async function viewDepartments() {
   let query = "SELECT department.id, department.department_name FROM department";
   let rows = await dbConnect.promise().query(query);
-  debugger
-  query.length
+
   console.table(rows[0]);
   // console.log(rows);
 }
-//"presented with a formatted table showing department names and department IDs"
 
-//query of department names and department IDs
-
-
-
-function viewRoles() {
-
-}
 //"Presented with the Job title, role Id, the department that role belongs to, and the salary for that role"
+async function viewRoles() {
+  // let query = "SELECT roles.title, role_id ONdepartment.id, roles.salary FROM roles";
+  let query = "SELECT roles.id, roles.title, department.department_name AS department, roles.salary FROM roles JOIN department on roles.department_id = department.id";
+  let rows = await dbConnect.promise().query(query);
+  console.table(rows[0]);
+}
+
+
 
 
 
