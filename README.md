@@ -22,13 +22,7 @@ It also allows users to update an employee role (work in progress at the moment)
   let rows = await dbConnect.promise().query(query);
   console.table(rows[0]);
 }
-
  ```
-
- ```
-
-```
-
 ## Technologies Used
 - JavaScript
 - Node.js
