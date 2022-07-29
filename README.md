@@ -6,8 +6,9 @@
 This application is a command-line application from scratch to manage a company's employee database, using Node.js, Inquirer, and MySQL. 
 
 The command line accepts user input and is presented with following options when user's start the application: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role. All the view options provide the users with respective data. The add options allow users to add either a department or a role and salary associated with that role.
-It also allows users to update an employee role (work in progress at the moment)
 
+
+It would ideally also allow users to update an employee role and add an employee but this felt incredibly difficult for me at this moment. I sincerely hope to do better next time. Or even hope to come back to this project in the very near future to see if stepping away from it was all that I needed to figure it out. 
 
 ## Deployed link and URL 
 - GitHub URL : https://github.com/priyarizal/employee-tracker-mysql
