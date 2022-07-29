@@ -1,7 +1,7 @@
 const mysql2 = require("mysql2");
 const inquirer = require("inquirer");
 
-let consoleTable = require('console.table');
+let cTable = require('console.table');
 
 
 // Connect to database
@@ -91,23 +91,68 @@ async function viewRoles() {
 
 //formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries and managers that the employees reports to"
 async function viewEmployees() {
-  let query =  "SELECT employee.id, employee.first_name, employee.last_name, roles.title, department.department_name AS department, roles.salary, employee.manager_id AS manager FROM employee JOIN roles on employee.role_id = roles.id JOIN department on roles.department_id = department.id";
+  let query = "SELECT employee.id, employee.first_name, employee.last_name, roles.title, department.department_name AS department, roles.salary, employee.manager_id AS manager FROM employee JOIN roles on employee.role_id = roles.id JOIN department on roles.department_id = department.id";
   let rows = await dbConnect.promise().query(query);
   console.table(rows[0]);
 }
 
 
-function addDepartment() {
-
-}
 //enter the name of the department which is then added to the database
+function addDepartment() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "addDepartment",
+        message: "What department would you like to add?"
+      }
+    ]).then(function (answer) {
+      dbConnect.query(
+        "INSERT INTO department(department_name) VALUES (?)",
+        [answer.addDepartment],
+        function (err) {
+          if (err) throw (err);
+          console.log("-------------------------------------------");
+          console.log("department added with" + answer.addDepartment);
+          console.log("-------------------------------------------");
+          startInquirer();
+        }
+      )
+    })
+};
 
-
-function addRoles() {
-
-}
 //prompted to enter the name, salary, and department for the role and that's also added to the database
-
+function addRoles() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "addRoles",
+        message: "What roles would you like to add?"
+      },
+      {
+        type: "int",
+        name: "salary",
+        message: "What salary would you like to give this role?",
+      },
+    ]).then(function(answer) {
+      dbConnect.query(
+        "INSERT INTO roles(title, salary, department_id) VALUES (?, ?, ?)",
+        {
+          title: answer.addRoles,
+          salary: answer.salary,
+          department: answer.department_id
+        },
+        function (err) {
+          if (err) throw (err);
+          console.log("-------------------------------------------");
+          console.log("department added with" + answer.addRoles);
+          console.log("-------------------------------------------");
+          startInquirer();
+        }
+      )
+    })
+}
 
 function addEmployee() {
 
@@ -116,6 +161,7 @@ function addEmployee() {
 
 
 function updateEmployeeRole() {
+
 
 }
 // select an employee to update and their new role and added this to the database
